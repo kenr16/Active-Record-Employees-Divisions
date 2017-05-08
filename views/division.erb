@@ -1,0 +1,38 @@
+<h1><%= @division.name() %></h1>
+
+<form action="/employees" method="post">
+  <input id="division_id" name="division_id" type="hidden" value="<%= @division.id() %>">
+
+  <label for="employee_name">Employee name:</label>
+  <input id="employee_name" name="employee_name" type="text">
+
+  <button type="submit">Add employee</button>
+</form>
+<hr>
+<% if @division.employees().any?() %>
+  <h3>Here are all the employees in this division:</h3>
+
+  <ul>
+    <% @division.employees().each() do |employee| %>
+      <li><%= employee.name() %> </li>
+    <% end %>
+  </ul>
+
+  <% else %>
+    <p>There are no employees on this division!</p>
+  <% end %>
+<hr>
+  <h1>Update <%=@division.name() %> </h1>
+
+  <form action="/divisions/<%= @division.id() %>" method="post">
+    <input name="_method" type="hidden" value="patch">
+    <label for="division_name">Rename your division:</label>
+    <input id="division_name" name="division_name" type="text">
+
+    <button type="submit">Update</button>
+  </form>
+
+  <form action="/divisions/<%= @division.id %>" method="post">
+    <input name="_method" type="hidden" value="delete">
+    <button type="submit" class="btn btn-danger">Delete Division</button>
+  </form>

@@ -1,0 +1,19 @@
+<h1>To Do</h1>
+
+<p>Here are all your divisions:</p>
+
+<ul>
+  <% @divisions.each do |division| %>
+    <li><a href="/divisions/<%= division.id() %>"><%= division.name() %></a></li>
+  <% end %>
+</ul>
+
+<p>Create new division:</p>
+
+<form action="/divisions" method="post">
+  <div class="form-group">
+    <label class="form-label" for="division_name">Assign a name to your division:</label>
+    <input class="form-control" id='division_name' type="text" name="division_name" placeholder="Division Name" autofocus>
+    <button type="submit" class="button btn">Add Division</button>
+  </div>
+</form>
